@@ -27,4 +27,20 @@ export const warehouseService = {
   create: (data) => api.post('/warehouses', data),
 };
 
+// Servicios para Proveedores
+export const supplierService = {
+  getAll: () => api.get('/suppliers'),
+  create: (data) => api.post('/suppliers', data),
+  getById: (id) => api.get(`/suppliers/${id}`),
+};
+
+// Servicios para Kardex
+export const kardexService = {
+  getAll: (params) => api.get('/kardex', { params }),
+  getById: (id) => api.get(`/kardex/${id}`),
+  createEntry: (data) => api.post('/kardex/entrada', data),
+  createExit: (data) => api.post('/kardex/salida', data),
+  getProductHistory: (productId) => api.get(`/kardex/producto/${productId}/historial`),
+};
+
 export default api;

@@ -3,6 +3,8 @@ const cors = require('cors');
 const { sequelize } = require('./models'); // Importamos la instancia de BD y modelos
 const inventoryRoutes = require('./controllers/inventoryRoutes');
 const warehouseRoutes = require('./routes/warehouseRoutes');
+const supplierRoutes = require('./routes/supplierRoutes'); 
+const kardexRoutes = require('./routes/kardexRoutes'); 
 
 const app = express();
 
@@ -12,6 +14,8 @@ app.use(express.json());
 // Usar las rutas
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/warehouses', warehouseRoutes);
+app.use('/api/suppliers', supplierRoutes); 
+app.use('/api/kardex', kardexRoutes); 
 
 // Ruta de prueba
 app.get('/', (req, res) => {
