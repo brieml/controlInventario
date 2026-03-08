@@ -8,13 +8,6 @@ const kardexRoutes = require('./routes/kardexRoutes');
 
 const app = express();
 
-const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-
 app.use(cors());
 app.use(express.json());
 
@@ -23,12 +16,6 @@ app.use('/api/inventory', inventoryRoutes);
 app.use('/api/warehouses', warehouseRoutes);
 app.use('/api/suppliers', supplierRoutes); 
 app.use('/api/kardex', kardexRoutes); 
-
-app.get('/ping', async (req, res) => {
-  const result = await pool.query('SELECT NOW()');
-  return res.json({ time: result.rows[0] });
-});
-
 
 // Ruta de prueba
 app.get('/', (req, res) => {
